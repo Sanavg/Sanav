@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveway Assignment</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">YAY! It's BOGO</div>
+
+        <div class="offer-box" onclick="selectOffer('selection1', this, 10.00)">
+            <input type="radio" name="offer">
+            <span class="offer-header">
+                <span>1 Unit</span>
+                <span class="discount">10% Off</span>
+            </span>
+            <span class="price">$10.00 USD </span> <br><span class="delp"><del>$24.00 USD</del></span>
+            <div class="selection-box" id="selection1">
+                <label class="Size">Size</label>
+                <label class="Color">Color</label>
+                <br>
+                <div>
+                    <label>#1</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="offer-box" onclick="selectOffer('selection2', this, 18.00)">
+            <input type="radio" name="offer">
+            <span class="offer-header">
+                <span>2 Units</span>
+                <span class="discount">20% Off</span>
+            </span>
+            <div class="most-popular">MOST POPULAR</div>
+            <span class="price">$18.00 USD </span> <br><span class="delp"><del>$30.00 USD</del></span>
+            <div class="selection-box" id="selection2">
+                
+                <label class="Size">Size</label>
+                <label class="Color">Color</label>
+                <br>
+                <div>
+                    <label>#1</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div>
+                    <label>#2</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="offer-box" onclick="selectOffer('selection3', this, 24.00)">
+            <input type="radio" name="offer">
+            <span class="offer-header">
+                <span>3 Units</span>
+                <span class="discount">30% Off</span>
+            </span>
+            <span class="price">$24.00 USD </span> <br><span class="delp"><del>$40.00 USD</del></span>
+            <div class="selection-box" id="selection3">
+                <label class="Size">Size</label>
+                <label class="Color">Color</label>
+                <br>
+                <div>
+                    <label>#1</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div>
+                    <label>#2</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div>
+                    <label>#3</label>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                    <label></label>
+                    <select>
+                        <option>Black</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <span class="free-delivery">Free Delivery</span>
+        <span class="total">Total: $<span id="total-price">18.00</span> USD</span>
+        <button class="add-to-cart">+ Add to Cart</button>
+        <br>
+        <span class="powered-by">@Powered by Pumper</span>
+    </div>
+
+    <script>
+        function selectOffer(selectionId, element, price) {
+            document.querySelectorAll('.offer-box').forEach(box => {
+                box.classList.remove('selected');
+                box.querySelector('input[type="radio"]').checked = false;
+            });
+    
+            element.classList.add('selected');
+            element.querySelector('input[type="radio"]').checked = true;
+    
+            document.querySelectorAll('.selection-box').forEach(box => box.style.display = 'none');
+            document.getElementById(selectionId).style.display = 'block';
+    
+            document.getElementById('total-price').textContent = price.toFixed(2);
+        }
+    
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const selected = document.querySelector('input[type="radio"]:checked');
+                if (!selected) {
+                    document.getElementById('total-price').textContent = '00.00';
+                }
+            });
+        });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const selected = document.querySelector('input[type="radio"]:checked');
+            if (!selected) {
+                document.getElementById('total-price').textContent = '00.00';
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
